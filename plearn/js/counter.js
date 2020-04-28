@@ -61,9 +61,14 @@ $(document).ready(function() {
     // Displaying question mark
     var img = document.createElement("img");
     img.className = "img-fluid";
-    img.src = "assets/question.png";
+    if($("#reveal_cb").is(":checked")) {
+      img.src = "assets/question.png";
+    }
+    else {
+      img.src = "assets/" + count.toString() + ".png";
+    }
     $("#counter-number").append(img);
-  }
+  };
 
 
   /*
@@ -79,7 +84,23 @@ $(document).ready(function() {
     img.src = "assets/" + count.toString() + ".png";
     $("#counter-number").empty();
     $("#counter-number").append(img);
-  }
+  };
+
+
+  /*
+  * Function to Hide Number of Displayed Item
+  *
+  * $.fn.hideNumber: takes 0 arguments, displays question mark instead of item
+  * count.
+  *
+  */
+  $.fn.hideNumber = function() {
+    var img = document.createElement("img");
+    img.className = "img-fluid ";
+    img.src = "assets/question.png";
+    $("#counter-number").empty();
+    $("#counter-number").append(img);
+  };
 
 
   /*
@@ -95,7 +116,7 @@ $(document).ready(function() {
       nextCount = Math.floor((Math.random() * 10) + 1);
     } while(nextCount == count);
     return nextCount;
-  }
+  };
 
 
   /*
@@ -111,7 +132,7 @@ $(document).ready(function() {
       nextImgdir = items[Math.floor(Math.random() * items.length)];
     } while(nextImgdir == imgdir && items.length > 1);
     return nextImgdir;
-  }
+  };
 
 
   /*
@@ -124,20 +145,22 @@ $(document).ready(function() {
   *
   */
   $(document).on("keypress", function(e) {
-    if(e.which >= 48 && e.which <= 57) { // Selecting 1-10 elements
-      count = ((e.which - 48) == 0) ? 10 : (e.which - 48);
-      imgdir = $.fn.nextImgdir();
-      $.fn.generateItem(count, imgdir);
+    if($("#info_modal").is(":visible") == false) { // Check info visibility
+      if(e.which >= 48 && e.which <= 57) { // Selecting 1-10 elements
+        count = ((e.which - 48) == 0) ? 10 : (e.which - 48);
+        imgdir = $.fn.nextImgdir();
+        $.fn.generateItem(count, imgdir);
+      }
+      else if(e.which == 32) { // Pressing SPACE to reveal number
+        $.fn.revealNumber();
+      }
+      else if(e.which == 13) { // Pressing Enter to generate random items
+        count = $.fn.nextCount();
+        imgdir = $.fn.nextImgdir();
+        $.fn.generateItem(count, imgdir);
+      }
     }
-    else if(e.which == 32) { // Pressing SPACE to reveal number
-      $.fn.revealNumber();
-    }
-    else if(e.which == 13) { // Pressing Enter to generate random items
-      count = $.fn.nextCount();
-      imgdir = $.fn.nextImgdir();
-      $.fn.generateItem(count, imgdir);
-    }
-  })
+  });
 
 
   // Mouse Click Event to Display a Random Number of Items on the Screen
@@ -145,13 +168,35 @@ $(document).ready(function() {
     count = $.fn.nextCount();
     imgdir = $.fn.nextImgdir();
     $.fn.generateItem(count, imgdir);
+  });
+
+
+  // Mouse Click Event on Hidden Toggle to Hide/Reveal Number
+  $("#reveal_cb_div").on("click", function() {
+    if($("#reveal_cb").is(":checked")) {
+      $.fn.revealNumber();
+    }
+    else {
+      $.fn.hideNumber();
+    }
+  });
+
+
+  // Removing Focus from Info Button upon Closing Modal
+  $("#info_modal").on("shown.bs.modal", function() {
+    $("#info_bt").one("focus", function() {
+      $(this).blur();
+    });
   })
 
 
-  // Displaying Info Modal on Load
-  $("#info_modal").modal('show');
+  // Displaying Info Modal on Load if Cookie Present, else Creating Cookie
+  if(Cookies.get('plearn-counter') === undefined) {
+    Cookies.set('plearn-counter', "active");
+    $("#info_modal").modal('show');
+  }
 
 
   // Display Random Number of Items on Load
   $.fn.generateItem(count, imgdir);
-})
+});

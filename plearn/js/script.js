@@ -4,6 +4,13 @@ $(document).ready(function() {
     "#3D9970",
     "#7FDBFF"
   ];
-  $("body").css("background-color",
-                colors[Math.floor(Math.random() * colors.length)]);
-})
+
+  // Setting Random Body Background Color
+  var colorIdx = Math.floor(Math.random() * colors.length);
+  $("body").css("background-color", colors[colorIdx]);
+
+  $("button").click(function() {
+    $("button").blur();
+  })
+
+});

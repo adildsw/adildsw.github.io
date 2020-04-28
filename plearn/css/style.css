@@ -19,6 +19,17 @@
   z-index: 2;
 }
 
+#reveal_cb_div {
+  position: absolute;
+  top: 2%;
+  left: 25%;
+  z-index: 2;
+}
+
+#reveal_cb {
+  border: 1px solid black;
+}
+
 #main {
   position: relative;
   height: 100vh;
