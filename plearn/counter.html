@@ -3,25 +3,68 @@
 <head>
   <title>Counter | PLearn!</title>
   <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="js/counter.js"></script>
+  <script src="js/script.js"></script>
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container-fluid" >
-    <div id="main" class="row">
 
-      <div id="counter-number" class="col-4">
-        This is Number Column
+    <a id="home_bt" class="btn btn-outline-info" href="index.html">
+      &#x1F3E0;
+    </a>
+    <button id="info_bt" class="btn btn-outline-dark" data-toggle="modal" data-target="#info_modal">
+      <i><b>&nbsp;i&nbsp;</b></i>
+    </button>
+
+    <div class="modal fade" id="info_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="col-12 modal-title text-center">Welcome to Counter by PLearn!</h5>
+          </div>
+          <div class="modal-body">
+            <p>This application is created with the objective of helping children to identify numbers and learn counting using interactive visuals.</p>
+            <table style="margin: auto;">
+              <tr>
+                <td>
+                  <img src="assets/0-9.png">
+                </td>
+                <td>Displays item of entered count (0 => 10 Items)</td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="assets/return.png" class="img-fluid">
+                </td>
+                <td>Displays a random number of item</td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="assets/space.png" class="img-fluid">
+                </td>
+                <td>Reveals item count</td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button class=" col-12 btn btn-info" data-dismiss="modal">Continue</button>
+          </div>
+        </div>
       </div>
+    </div>
 
+    <div id="main" class="row">
+      <div id="counter-number" class="col-4">
+      </div>
       <div class="col">
         <div id="counter-images">
         </div>
       </div>
+    </div> <!-- .row -->
 
-    </div>
-  </div>
+  </div> <!-- .container-fluid -->
 </body>
 </html>
