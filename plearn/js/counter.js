@@ -182,6 +182,35 @@ $(document).ready(function() {
   });
 
 
+  // Mouse Click Event on Play Button to Play Numbers Sequentially
+  var number_player;
+  var hidden_status = 'on';
+  $("#play_bt").on("click", function() {
+    if($("#play_bt").text().includes(String.fromCharCode(9655))) {
+      $("#play_bt").text(String.fromCharCode(9724));
+      hidden_status = $("#reveal_cb").is(":checked") ? 'on' : 'off';
+      count = 1;
+      $("#reveal_cb").bootstrapToggle('off');
+      $.fn.generateItem(count, imgdir);
+      number_player = setInterval(function() {
+        count = (count + 1);
+        imgdir = $.fn.nextImgdir();
+        $.fn.generateItem(count, imgdir);
+        if(count == 10) {
+          clearInterval(number_player);
+          $("#play_bt").text(String.fromCharCode(9655));
+          $("#reveal_cb").bootstrapToggle(hidden_status);
+        }
+      }, 2000);
+    }
+    else {
+      clearInterval(number_player);
+      $("#play_bt").text(String.fromCharCode(9655));
+      $("#reveal_cb").bootstrapToggle(hidden_status);
+    }
+  })
+
+
   // Removing Focus from Info Button upon Closing Modal
   $("#info_modal").on("shown.bs.modal", function() {
     $("#info_bt").one("focus", function() {
@@ -195,6 +224,28 @@ $(document).ready(function() {
     Cookies.set('plearn-counter', "active");
     $("#info_modal").modal('show');
   }
+
+
+  // Window Resize Event to Limit Resizing
+  $(window).resize(function() {
+    if(window.innerWidth < 600 || window.innerHeight < 400) {
+      if($("#blocker").hasClass("invisible")) {
+        $("#blocker").removeClass("invisible");
+      }
+      if($("#main-content").hasClass("invisible") == false) {
+        $("#main-content").addClass("invisible");
+      }
+    }
+    else {
+      if($("#blocker").hasClass("invisible") == false) {
+        $("#blocker").addClass("invisible");
+      }
+      if($("#main-content").hasClass("invisible")) {
+        $("#main-content").removeClass("invisible");
+      }
+    }
+  })
+  window.dispatchEvent(new Event('resize'));
 
 
   // Display Random Number of Items on Load

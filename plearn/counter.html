@@ -15,19 +15,35 @@
   <link rel="shortcut icon" href="assets/favicon.ico">
 </head>
 <body>
-  <div class="container-fluid" >
+  <div id="blocker" class="full-screen invisible" style="background-color: white;">
+    <p>Please increase window size or switch to a larger display.</p>
+  </div>
 
-    <a id="home_bt" class="btn btn-outline-info" href="index.html">
-      &#x1F3E0;
-    </a>
-    <button id="info_bt" class="btn btn-outline-dark" data-toggle="modal" data-target="#info_modal">
-      <i><b>&nbsp;i&nbsp;</b></i>
-    </button>
-    <div id="reveal_cb_div" class="checkbox">
-      <input id="reveal_cb" type="checkbox" checked data-toggle="toggle" data-onstyle="info" data-on="Hidden" data-off="Visible">
+  <div id="main-content" class="container-fluid">
+
+    <!-- Controls -->
+    <div id="controls" class="row">
+      <div class="col-2">
+        <a id="home_bt" class="btn btn-outline-info" href="index.html">
+          &#x1F3E0;
+        </a>
+      </div>
+      <div class="col-2">
+        <div id="reveal_cb_div" class="checkbox">
+          <input id="reveal_cb" type="checkbox" checked data-toggle="toggle" data-onstyle="info" data-on="Hidden" data-off="Visible">
+        </div>
+      </div>
+      <div class="col">
+        <button id="play_bt" class="btn btn-outline-dark">
+          &#9655;
+        </button>
+        <button id="info_bt" class="btn btn-outline-dark" data-toggle="modal" data-target="#info_modal">
+          <i><b>&nbsp;i&nbsp;</b></i>
+        </button>
+      </div>
     </div>
 
-
+    <!-- Info Modal -->
     <div class="modal fade" id="info_modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -64,6 +80,7 @@
       </div>
     </div>
 
+    <!-- Main Content -->
     <div id="main" class="row">
       <div id="counter-number" class="col-4">
       </div>
@@ -73,6 +90,6 @@
       </div>
     </div> <!-- .row -->
 
-  </div> <!-- .container-fluid -->
+  </div> <!-- #main-content -->
 </body>
 </html>

@@ -5,29 +5,40 @@
     margin-left: auto;
 }
 
-#home_bt {
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.invisible {
+  display: none;
+}
+
+#controls {
   position: absolute;
   top: 2%;
-  left: 2%;
+  width: 100vw;
   z-index: 2;
 }
 
-#info_bt {
+#home_bt {
   position: absolute;
-  top: 2%;
-  right: 2%;
-  z-index: 2;
+  left: 8%;
+}
+
+#play_bt {
+  position: absolute;
+  left: 2%;
 }
 
 #reveal_cb_div {
   position: absolute;
-  top: 2%;
-  left: 25%;
-  z-index: 2;
+  right: 8%;
 }
 
-#reveal_cb {
-  border: 1px solid black;
+#info_bt {
+  position: absolute;
+  right: 2%;
 }
 
 #main {
