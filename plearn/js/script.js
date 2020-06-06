@@ -9,8 +9,4 @@ $(document).ready(function() {
   var colorIdx = Math.floor(Math.random() * colors.length);
   $("body").css("background-color", colors[colorIdx]);
 
-  $("button").click(function() {
-    $("button").blur();
-  })
-
 });
