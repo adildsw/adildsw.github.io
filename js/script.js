@@ -122,17 +122,6 @@ $(document).ready(function() {
         return distance;
     }
 
-    // Compares two arrays
-    function isEqual(ar1, ar2) {
-        if (ar1.length == ar2.length) {
-            for(i = 0; i < ar1.length; i++) {
-                if(ar1[i] != ar2[i])
-                    return false;
-            }
-        }
-        return true;
-    }
-
     // Checks if pixel belongs to the mail button
     function isMailButton(pixel) {
         var threshold = 15;
