@@ -3,8 +3,62 @@ $(document).ready(function() {
     var canvas;
     var clickAction = "none";
 
+    // Preloads all the assets for smooth website experience
+    (function preloadAssets() {
+        var imgAssets = [
+            "assets/keyframes/message-1-1.png",
+            "assets/keyframes/message-1-2.png",
+            "assets/keyframes/message-1-3.png",
+            "assets/keyframes/message-2-1.png",
+            "assets/keyframes/message-2-2.png",
+            "assets/keyframes/message-2-3.png",
+            "assets/keyframes/message-3-1.png",
+            "assets/keyframes/message-3-2.png",
+            "assets/keyframes/message-3-3.png",
+            "assets/keyframes/message-4-1.png",
+            "assets/keyframes/message-4-2.png",
+            "assets/keyframes/message-4-3.png",
+            "assets/keyframes/message-5-1.png",
+            "assets/keyframes/message-5-2.png",
+            "assets/keyframes/message-5-3.png",
+            "assets/keyframes/message-6-1.png",
+            "assets/keyframes/message-6-2.png",
+            "assets/keyframes/message-6-3.png",
+            "assets/keyframes/message-7-1.png"
+        ];
+        var assetsLoaded = 0;
+        
+        $('#scene').hide();
+
+        for(var i = 0; i < imgAssets.length; i++) {
+            var img = new Image();
+            img.src = imgAssets[i];
+            img.onload = function() {
+                updateProgress();
+            }
+        }
+
+        // Function for updating preloading progress
+        function updateProgress() {
+            assetsLoaded++;
+            var newWidth = $('#progress').width() * (assetsLoaded/imgAssets.length);
+            $('#bar').stop(true, true);
+            $('#bar').animate({width: newWidth}, 500);
+
+            if(assetsLoaded == imgAssets.length)
+                loaded();
+        }
+        
+        // Function for when all the assets are preloaded
+        function loaded() {
+            $('#progress').hide();
+            $('#scene').show();
+            messageAnimation();
+        }
+    })();
+
     // Executes message animation
-    (function messageAnimation() {
+    function messageAnimation() {
         var loadTimer, delay;
         var messageNumber = 1;
         var delayRange = {
@@ -26,7 +80,7 @@ $(document).ready(function() {
                     loop();
             }, delay);
         })();
-    })();
+    }
 
     // Animates message loading frame-by-frame
     function animateMessageLoading(messageNumber) {
