@@ -53,6 +53,8 @@ body {
     margin-right: auto;
     max-height: 90vh;
     margin-top: 2vh;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 #window1-img, #window2-img {
