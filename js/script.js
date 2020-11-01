@@ -62,12 +62,12 @@ $(document).ready(function() {
         var loadTimer, delay;
         var messageNumber = 1;
         var delayRange = {
-            '1': [1500, 2000],
-            '2': [2100, 2500],
-            '3': [3500, 4000],
-            '4': [3700, 4300],
-            '5': [2600, 3100],
-            '6': [1900, 2400]
+            '1': [500, 1000],
+            '2': [500, 1000],
+            '3': [1500, 2000],
+            '4': [1500, 2000],
+            '5': [1000, 1500],
+            '6': [500, 1000]
         }
 
         loadTimer = animateMessageLoading(messageNumber++);
